@@ -1,17 +1,25 @@
 package com.mycompany.main;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Department implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    private static int nextId = 1;//ver de que numero se incia la secuencia
+    private int id;
     private String name;
-    private String ubication;
-    private List<Employee> empleados;
 
-    public Department(String name, String ubication, Employee employee) {
+    public Department(String name) {
+        this.id = nextId++;
         this.name = name;
-        this.ubication = ubication;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -22,24 +30,8 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public String getUbication() {
-        return ubication;
-    }
-
-    public void setUbication(String ubication) {
-        this.ubication = ubication;
-    }
-
-    public List<Employee> getEmpleados() {
-        return empleados;
-    }
-
-    public void setEmpleados(List<Employee> empleados) {
-        this.empleados = empleados;
-    }
-
     public String messageEmplo(Employee employeeSelected) {
-        String message = "El departamento " + name + " esta ubicado en " + ubication + " y los empleados que pertenecen a este departamento: ";
+        String message = "El departamento " + name + " y los empleados que pertenecen a este departamento: ";
 
         return message;
     }

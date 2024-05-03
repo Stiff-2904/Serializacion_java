@@ -19,7 +19,6 @@ public class DataBase {
 
         do {
             option = Integer.parseInt(JOptionPane.showInputDialog("1.Agregar un empleado y departamento.\n2.Buscar un empleado/departamento.\n3.Eliminar un empleado/departamento\n0.Salir."));
-            System.out.println(option);
             switch (option) {
                 case 1:
                     fillDates();
@@ -61,16 +60,46 @@ public class DataBase {
 
         int ageEmployee = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la edad del empleado"));
 
-        Employee newEmployee = new Employee(nameEmployee, lastNameEmployee, IDEmployee, ageEmployee);
-
         String departmentName = JOptionPane.showInputDialog(null, "Ingrese el nombre del departamento");
 
-        String departmentUbication = JOptionPane.showInputDialog(null, "Ingrese la ubicación del departamento");
-
-        Department newDepartment = new Department(departmentName, departmentUbication, newEmployee);
+        Department newDepartment = new Department(departmentName);// tengo dudas con eso
+        int IDDeparment = newDepartment.getId();
+        Employee newEmployee = new Employee(nameEmployee, lastNameEmployee, IDEmployee, ageEmployee, IDDeparment);
 
         addEmployee(newEmployee);
         addDepartment(newDepartment);
+    }
+
+    int addIDEmployee(String departmentName, Department newDepartment) {
+
+        File file = new File(FILE_NAME_DEPARTMENT);
+        boolean fileExists = file.exists();
+        boolean check = false;
+
+        if (!fileExists) {
+            return newDepartment.getId();
+        } else {
+            try (FileInputStream fis = new FileInputStream(FILE_NAME_DEPARTMENT); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                Department deparmentAux;
+
+                while (true) {
+                    deparmentAux = (Department) ois.readObject();
+                    if (deparmentAux.getName() == departmentName) {
+                        return newDepartment.getId();
+                        check = true;
+                    }
+                }
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (EOFException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     void addEmployee(Employee newEmployee) {
@@ -101,7 +130,6 @@ public class DataBase {
 
     void pruebasEmple() {
         try (FileInputStream fis = new FileInputStream(FILE_NAME_EMPLOYEES); ObjectInputStream ois = new ObjectInputStream(fis)) {
-
             Employee employe;
 
             while (true) {
@@ -123,16 +151,13 @@ public class DataBase {
         try (FileInputStream fis = new FileInputStream(FILE_NAME_EMPLOYEES); ObjectInputStream ois = new ObjectInputStream(fis)) {
 
             Employee employe;
-            
+
             Department depatamentu;
 
             while (true) {
                 //employe = (Employee) ois.readObject();
                 depatamentu = (Department) ois.readObject();
-                employe = depatamentu.getEmployee();
-                
-                System.out.println(employe.getName() + " " + employe.getLastName() + " " + employe.getAge() + " " + employe.getID() + "\n");
-                System.out.println(depatamentu.getName() + " " + depatamentu.getUbication());
+
             }
 
         } catch (ClassNotFoundException e) {
