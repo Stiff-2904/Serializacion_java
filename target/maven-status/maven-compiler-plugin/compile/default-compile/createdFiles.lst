@@ -1,5 +1,4 @@
 com\mycompany\main\Main.class
-com\mycompany\main\DataBase.class
 com\mycompany\main\Department.class
 com\mycompany\main\MiObjectOutputStream.class
 com\mycompany\main\Employee.class

@@ -5,21 +5,21 @@ import java.io.Serializable;
 public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static int nextId = 1;//ver de que numero se incia la secuencia
-    private int id;
+    private static int nextId = 1;    //ver de que numero se incia la secuencia
+    private int idDepartment;
     private String name;
 
     public Department(String name) {
-        this.id = nextId++;
+        this.idDepartment = nextId++;
         this.name = name;
     }
 
     public int getId() {
-        return id;
+        return idDepartment;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idDepartment = id;
     }
 
     public String getName() {

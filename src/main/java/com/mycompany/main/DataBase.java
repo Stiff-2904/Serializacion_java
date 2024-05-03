@@ -18,25 +18,29 @@ public class DataBase {
         int option;
 
         do {
-            option = Integer.parseInt(JOptionPane.showInputDialog("1.Agregar un empleado y departamento.\n2.Buscar un empleado/departamento.\n3.Eliminar un empleado/departamento\n0.Salir."));
+            option = Integer.parseInt(JOptionPane.showInputDialog("1. Agregar empleado.\n2. Agregar departamento.\n3. Buscar Empleado/Departamento\n4. Eliminar Empleado/Departamento\n5. Pruebas departamento jaja\n0.Salir."));
             switch (option) {
                 case 1:
-                    fillDates();
+                    fillDataEmployee();
                     break;
 
                 case 2:
-                    search();
+                    fillDataDepartment();
                     break;
 
                 case 3:
-                    deletes();
+                    search();
                     break;
 
                 case 4:
-                    //pruebasEmple();
-                    pruebasDepart();
+                    delete();
                     break;
 
+                case 5:
+                    //pruebasEmple();
+                    pruebasDepart();
+
+                    break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Estas saliendo del programa\nVuelve pronto\nTe extrañaremos");
                     break;
@@ -50,23 +54,26 @@ public class DataBase {
 
     }
 
-    void fillDates() {
+    void fillDataEmployee() {
 
         String nameEmployee = JOptionPane.showInputDialog(null, "Ingrese el nombre del empleado");
+        String lastNameEmployee = JOptionPane.showInputDialog(null, "Ingrese el apellido del empleado:");
 
-        String lastNameEmployee = JOptionPane.showInputDialog(null, "Ingrese el apellido del empleado");
-
-        int IDEmployee = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número de cédula del empleado"));
-
-        int ageEmployee = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la edad del empleado"));
-
-        String departmentName = JOptionPane.showInputDialog(null, "Ingrese el nombre del departamento");
-
-        Department newDepartment = new Department(departmentName);// tengo dudas con eso
-        int IDDeparment = newDepartment.getId();
+        int IDEmployee = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número de cédula del empleado:"));
+        int ageEmployee = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la edad del empleado:"));
+        
         Employee newEmployee = new Employee(nameEmployee, lastNameEmployee, IDEmployee, ageEmployee, IDDeparment);
 
         addEmployee(newEmployee);
+    }
+
+    void fillDataDepartment() {
+
+        String departmentName = JOptionPane.showInputDialog(null, "Ingrese el nombre del departamento: ");
+
+        Department newDepartment = new Department(departmentName);// tengo dudas con eso
+        int IDDeparment = newDepartment.getId();
+
         addDepartment(newDepartment);
     }
 
@@ -86,7 +93,6 @@ public class DataBase {
                     deparmentAux = (Department) ois.readObject();
                     if (deparmentAux.getName() == departmentName) {
                         return newDepartment.getId();
-                        check = true;
                     }
                 }
 
@@ -97,9 +103,8 @@ public class DataBase {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
+        return 0;
     }
 
     void addEmployee(Employee newEmployee) {
@@ -286,7 +291,7 @@ public class DataBase {
 
     }
 
-    void deletes() {
+    void delete() {
         int option = Integer.parseInt(JOptionPane.showInputDialog(null, "1.Eliminar empleado\n2.Eliminar departamento"));
 
         if (option == 1) {
@@ -302,12 +307,12 @@ public class DataBase {
     }
 
     void deleteEmployee() {
-        //fxghchfddddgdfgdfgdfgdfgdfgdf
+    //buscarlo en la lista y eliminarloooo FUAP
 
     }
 
     void deleteDepartment() {
-        //fxghchfddddgdfgdfgdfgdfgdfgdf
+        //buscarlo en la lista y eliminarloooo FUAP
 
     }
 

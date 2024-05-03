@@ -9,14 +9,14 @@ public class Employee implements Serializable {
     private String lastName;
     private int ID;
     private int age;
-    int idDeparment;
+    int idDeparmentEm;
 
-    public Employee(String name, String lastName, int ID, int age, int idDeparment) {
+    public Employee(String name, String lastName, int ID, int age) {
         this.name = name;
         this.lastName = lastName;
         this.ID = ID;
         this.age = age;
-        this.idDeparment = idDeparment;
+        this.idDeparmentEm = 0
     }
 
     public String getName() {
@@ -52,11 +52,11 @@ public class Employee implements Serializable {
     }
 
     public int getIdDeparment() {
-        return idDeparment;
+        return idDeparmentEm;
     }
 
     public void setIdDeparment(int idDeparment) {
-        this.idDeparment = idDeparment;
+        this.idDeparmentEm = idDeparment;
     }
 
     public String toString() {
