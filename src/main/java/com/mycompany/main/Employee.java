@@ -16,7 +16,7 @@ public class Employee implements Serializable {
         this.lastName = lastName;
         this.ID = ID;
         this.age = age;
-        this.idDeparmentEm = 0
+        this.idDeparmentEm = 0;
     }
 
     public String getName() {
@@ -60,15 +60,8 @@ public class Employee implements Serializable {
     }
 
     public String toString() {
-        String message = "\nEl empleado se llama " + name + " " + lastName + " con " + age + " años + y la cedula es " + ID;
+        String message = "{El empleado " + name + " " + lastName + " con " + age + " años y la cedula es " + ID + "}\n";
 
         return message;
     }
-
-    public String messageDepart(Department deparmentSelected) {
-        String message = "El empleado se llama " + name + " " + lastName + " con " + age + " años + y la cedula es " + ID
-                + "\nEse empleado pertenese a " + deparmentSelected.getName();
-        return message;
-    }
-
 }
