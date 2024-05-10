@@ -383,7 +383,7 @@ public class DataBase {
             }
 
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+
         }
     }
 
